@@ -4,6 +4,13 @@
 
 [English](#english) | [中文](#中文)
 
+## 效果展示 / Screenshots
+
+<p align="center">
+  <img src="screenshots/demo1.png" width="400" alt="群聊效果">
+  <img src="screenshots/demo2.png" width="400" alt="对话总结">
+</p>
+
 ---
 
 ## 中文
@@ -21,7 +28,7 @@
 
 ```bash
 cd ~/.clawdbot/extensions
-git clone https://github.com/user/clawdbot-lark-plugin.git lark
+git clone https://github.com/lekuduo/clawdbot-lark-plugin.git lark
 cd lark && npm install
 ```
 
@@ -91,7 +98,7 @@ npx clawdbot gateway stop && npx clawdbot gateway
 
 ```bash
 cd ~/.clawdbot/extensions
-git clone https://github.com/user/clawdbot-lark-plugin.git lark
+git clone https://github.com/lekuduo/clawdbot-lark-plugin.git lark
 cd lark && npm install
 ```
 
