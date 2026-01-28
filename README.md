@@ -72,12 +72,44 @@ npx clawdbot gateway stop && npx clawdbot gateway
 | `dm.allowFrom` | 允许私聊的用户 ID 列表，`["*"]` 表示所有人 |
 | `groups.*.requireMention` | 群聊是否需要 @机器人 |
 
+### 高级配置
+
+#### 使用第三方 API 代理
+
+如果使用 Claude API 代理服务（如 CRS），在 `clawdbot.json` 中配置：
+
+```json
+{
+  "model": "crs/claude-opus-4-5-20251101",
+  "modelConfig": {
+    "crs": {
+      "type": "anthropic",
+      "baseUrl": "https://your-proxy-api.com/api",
+      "apiKey": "your-api-key"
+    }
+  }
+}
+```
+
+#### 禁用工具调用
+
+某些 API 代理可能不完全支持工具调用，导致 `server_tool_use` 错误。添加以下配置禁用问题工具：
+
+```json
+{
+  "tools": {
+    "deny": ["web_search", "web_fetch"]
+  }
+}
+```
+
 ### 故障排除
 
 | 问题 | 解决 |
 |------|------|
 | 连接失败 | 检查 App ID/Secret，确认长连接已启用 |
 | 收不到消息 | 确认已订阅 `im.message.receive_v1` 事件 |
+| `server_tool_use` 错误 | 在 `tools.deny` 中禁用 `web_search` 和 `web_fetch` |
 | 查看日志 | `tail -f ~/.clawdbot/gateway.log` |
 
 ---
@@ -142,12 +174,44 @@ npx clawdbot gateway stop && npx clawdbot gateway
 | `dm.allowFrom` | Allowed user IDs, `["*"]` for all |
 | `groups.*.requireMention` | Require @mention in groups |
 
+### Advanced Configuration
+
+#### Using Third-party API Proxy
+
+If using a Claude API proxy service (e.g., CRS), configure in `clawdbot.json`:
+
+```json
+{
+  "model": "crs/claude-opus-4-5-20251101",
+  "modelConfig": {
+    "crs": {
+      "type": "anthropic",
+      "baseUrl": "https://your-proxy-api.com/api",
+      "apiKey": "your-api-key"
+    }
+  }
+}
+```
+
+#### Disable Tool Calling
+
+Some API proxies may not fully support tool calling, causing `server_tool_use` errors. Add this config to disable problematic tools:
+
+```json
+{
+  "tools": {
+    "deny": ["web_search", "web_fetch"]
+  }
+}
+```
+
 ### Troubleshooting
 
 | Issue | Solution |
 |-------|----------|
 | Connection failed | Check App ID/Secret, ensure long connection enabled |
 | No messages | Verify `im.message.receive_v1` event subscription |
+| `server_tool_use` error | Disable `web_search` and `web_fetch` in `tools.deny` |
 | View logs | `tail -f ~/.clawdbot/gateway.log` |
 
 ---
